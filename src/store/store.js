@@ -1,5 +1,5 @@
-import React from 'react';
-import * as actionTypes from './actionTypes';
+import React from 'react'
+import * as actionTypes from './actionTypes'
 
 export const initialState = {
   player: {
@@ -9,12 +9,33 @@ export const initialState = {
     selectedShip: 'blue'
   },
   game: {
-    isStarted: false
+    isStarted: false,
+    arenaHeight: 0,
+    arenaWidth: 0,
+    playerPosition: {
+      x: 0,
+      y: 0
+    }
   }
 }
 
 export const reducer = (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
+    case actionTypes.INIT_GAME: {
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          arenaHeight: action.payload.arenaHeight,
+          arenaWidth: action.payload.arenaWidth,
+          playerPosition: {
+            ...state.game.playerPosition,
+            x: action.payload.playerPosition.x,
+            y: action.payload.playerPosition.y
+          }
+        }
+      }
+    }
     case actionTypes.SET_USERNAME: {
       return {
         ...state,
@@ -34,12 +55,39 @@ export const reducer = (state, action) => {
       }
     }
     case actionTypes.START_GAME: {
-      console.log('test')
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          userName: action.userName
+        },
+        game: {
+          ...state.game,
+          isStarted: true
+        }
+      }
+    }
+    case actionTypes.MOVE_LEFT: {
       return {
         ...state,
         game: {
           ...state.game,
-          isStarted: true
+          playerPosition: {
+            ...state.game.playerPosition,
+            x: state.game.playerPosition.x - 15
+          }
+        }
+      }
+    }
+    case actionTypes.MOVE_RIGHT: {
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          playerPosition: {
+            ...state.game.playerPosition,
+            x: state.game.playerPosition.x + 15
+          }
         }
       }
     }
@@ -47,4 +95,4 @@ export const reducer = (state, action) => {
   }
 }
 
-export const StateContext = React.createContext();
+export const StateContext = React.createContext()

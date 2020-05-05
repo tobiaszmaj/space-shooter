@@ -3,7 +3,7 @@
   display: block;
   width: 64px;
   height: 64px;
-  transition: all ease .2s;
+  top: -200px;
 }
 
 .body {
@@ -30,11 +30,11 @@
 }
 
 .flyleft {
-  animation: flyleft .4s steps(2, start) forwards;
+  animation: flyleft .3s steps(2, start) forwards;
 }
 
 .flyright {
-  animation: flyright .4s steps(2, start) forwards;
+  animation: flyright .3s steps(2, start) forwards;
 }
 
 .blue {
@@ -70,6 +70,7 @@
   from {
     background-position: 0 0;
   }
+
   to {
     background-position: -128px 0;
   }
@@ -77,8 +78,9 @@
 
 @keyframes flyright {
   from {
-    background-position: 0 0;
+    background-position: -128px 0;
   }
+
   to {
     background-position: -256px 0;
   }
@@ -88,6 +90,7 @@
   from {
     background-position: 0 0;
   }
+
   to {
     background-position: -115px 0;
   }
