@@ -9,13 +9,7 @@ const Game = (props) => {
     const [flyingLeft, setFlyingLeft] = useState(false)
     const [flyingRight, setFlyingRight] = useState(false)
 
-    // Here it gets an updated object each time.
-    console.log(store.state.game.playerPosition)
-
     useEffect(() => {
-        window.addEventListener('keydown', handleMove)
-        window.addEventListener('keyup', handleStop)
-
         if (store.state.game.isStarted) {
             const arenaWidth = props.arena.current.clientWidth
             const arenaHeight = props.arena.current.clientHeight
@@ -35,32 +29,38 @@ const Game = (props) => {
         }
     }, [])
 
-    const handleMove = (e) => {
+    useEffect(() => {
+        const handleMove = (e) => {
+            if (e.keyCode === 39 && store.state.game.playerPosition.x + 84 <
+                store.state.game.arenaWidth) {
+                store.dispatch({ type: actionTypes.MOVE_RIGHT })
+                if (!flyingRight) {
+                    setFlyingRight(true)
+                    setFlyingLeft(false)
+                }
+            }
 
-        // At this point, it gets its initial state all the time.
-        console.log(store.state.game.playerPosition)
-
-        if (e.keyCode === 39) {
-            store.dispatch({ type: actionTypes.MOVE_RIGHT })
-            if (!flyingRight) {
-                setFlyingRight(true)
-                setFlyingLeft(false)
+            if (e.keyCode === 37 && store.state.game.playerPosition.x - 20 > 0) {
+                store.dispatch({ type: actionTypes.MOVE_LEFT })
+                if (!flyingLeft) {
+                    setFlyingRight(false)
+                    setFlyingLeft(true)
+                }
             }
         }
 
-        if (e.keyCode === 37) {
-            store.dispatch({ type: actionTypes.MOVE_LEFT })
-            if (!flyingLeft) {
-                setFlyingRight(false)
-                setFlyingLeft(true)
-            }
+        const handleStop = () => {
+            setFlyingRight(false)
+            setFlyingLeft(false)
         }
-    }
 
-    const handleStop = () => {
-        setFlyingRight(false)
-        setFlyingLeft(false)
-    }
+        window.addEventListener('keydown', handleMove)
+        window.addEventListener('keyup', handleStop)
+        return () => {
+            window.removeEventListener('keydown', handleMove)
+            window.removeEventListener('keyup', handleStop)
+        }
+    }, [flyingLeft, flyingRight, store])
 
     return (
         <React.Fragment>
