@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-html, 
+html,
 body {
   height: 100%;
 }
@@ -25,6 +25,7 @@ body {
   background: #2e3440 url('./assests/bg.jpg') repeat-y;
   background-position: top center;
   /* animation: bg-animation 30s linear infinite; */
+  user-select: none;
   background-size: cover;
 }
 
@@ -33,7 +34,6 @@ img {
   height: auto;
 }
 
-x
 form {
   width: 300px;
   max-width: 100%;
@@ -79,7 +79,7 @@ input {
   left: -10px;
 }
 
-.form-row__input::before{
+.form-row__input::before {
   bottom: -10px;
   right: -10px;
 }
@@ -112,7 +112,7 @@ button::after {
   left: -4px;
 }
 
-button::before{
+button::before {
   bottom: -4px;
   right: -4px;
 }
@@ -163,6 +163,7 @@ button[type="submit"]::before {
   from {
     background-position: 0 0;
   }
+
   to {
     background-position: 0 1080px;
   }

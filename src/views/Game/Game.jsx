@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { StateContext } from '../../store/store'
 import Battleship from '../../components/Battleship/Battleship'
+import Bullets from '../../components/Bullets/Bullets'
 import * as actionTypes from '../../store/actionTypes'
 
 const Game = (props) => {
@@ -9,7 +10,6 @@ const Game = (props) => {
     const [starting, setStarting] = useState(true)
     const [flyingLeft, setFlyingLeft] = useState(false)
     const [flyingRight, setFlyingRight] = useState(false)
-    const [keyFired, setKeyFired] = useState(false)
 
     useEffect(() => {
         if (store.state.game.isStarted) {
@@ -34,12 +34,6 @@ const Game = (props) => {
 
     useEffect(() => {
         const handleMove = (e) => {
-
-            if (e.keyCode === 32) {
-                if (!keyFired)
-                    console.log('shoots')
-                setKeyFired(true)
-            }
 
             if (e.keyCode === 39 && store.state.game.playerPosition.x + 84 <
                 store.state.game.arenaWidth) {
@@ -66,25 +60,28 @@ const Game = (props) => {
         const handleStop = (e) => {
             setFlyingRight(false)
             setFlyingLeft(false)
+        }
 
-            if (e && e.keyCode === 32) {
-                setKeyFired(false)
-            }
+        const handleShoot = () => {
+            console.log('Test2')
         }
 
         window.addEventListener('keydown', handleMove)
         window.addEventListener('keyup', handleStop)
+        window.addEventListener('click', handleShoot)
         return () => {
             window.removeEventListener('keydown', handleMove)
             window.removeEventListener('keyup', handleStop)
+            window.removeEventListener('click', handleShoot)
         }
-    }, [flyingLeft, flyingRight, store, keyFired])
+    }, [flyingLeft, flyingRight, store])
 
     return (
         <React.Fragment>
+            <Bullets type='laser' />
             <Battleship
                 color={store.state.player.selectedShip}
-                animationTime={starting ? 1200 : 50}
+                animationTime={starting ? 900 : 100}
                 flyingLeft={flyingLeft}
                 flyingRight={flyingRight}
                 x={store.state.game.playerPosition.x === 0 ? null : store.state.game.playerPosition.x}
