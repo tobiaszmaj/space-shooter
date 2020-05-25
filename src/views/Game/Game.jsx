@@ -63,7 +63,14 @@ const Game = (props) => {
         }
 
         const handleShoot = () => {
-            console.log('Test2')
+            const payload = {
+                type: store.state.player.gun,
+                position: {
+                    x: store.state.game.playerPosition.x + 28,
+                    y: store.state.game.playerPosition.y - 28
+                }
+            }
+            store.dispatch({ type: actionTypes.BULLET_CREATE, payload })
         }
 
         window.addEventListener('keydown', handleMove)
@@ -78,10 +85,18 @@ const Game = (props) => {
 
     return (
         <React.Fragment>
-            <Bullets type='laser' />
+            {store.state.game.playerBullets.map((bullet, index) =>
+                <Bullets
+                    key={index}
+                    index={index}
+                    type={bullet.type}
+                    x={bullet.position.x}
+                    y={bullet.position.y}
+                />
+            )}
             <Battleship
                 color={store.state.player.selectedShip}
-                animationTime={starting ? 900 : 100}
+                animationTime={starting ? 900 : 0}
                 flyingLeft={flyingLeft}
                 flyingRight={flyingRight}
                 x={store.state.game.playerPosition.x === 0 ? null : store.state.game.playerPosition.x}
