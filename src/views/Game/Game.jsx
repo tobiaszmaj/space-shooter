@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { StateContext } from '../../store/store'
 import Battleship from '../../components/Battleship/Battleship'
 import Bullets from '../../components/Bullets/Bullets'
+import Enemies from '../Enemies/Enemies'
 import * as actionTypes from '../../store/actionTypes'
 
 const Game = (props) => {
@@ -85,6 +86,7 @@ const Game = (props) => {
 
     return (
         <React.Fragment>
+            <Enemies />
             {store.state.game.playerBullets.map((bullet, index) =>
                 <Bullets
                     key={index}
