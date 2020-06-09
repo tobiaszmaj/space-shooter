@@ -19,15 +19,14 @@ export const initialState = {
     },
     playerBullets: []
   },
-  enemies: [
-    {
-      type: 'asteroid',
-      x: 250,
-      y: 50,
-      width: 39,
-      height: 37
-    }
-  ]
+  enemies: [{
+    type: 'asteroid',
+    style: 1,
+    x: 250,
+    y: -37,
+    width: 39,
+    height: 37
+  }]
 }
 
 export const reducer = (state, action) => {
@@ -120,8 +119,7 @@ export const reducer = (state, action) => {
           return {
             ...action.payload.bullet
           }
-        }
-        else {
+        } else {
           return item
         }
       })
@@ -135,7 +133,17 @@ export const reducer = (state, action) => {
         }
       }
     }
-    default: return state
+    case actionTypes.ENEMY_ADD: {
+      return {
+        ...state,
+        enemies: [
+          ...state.enemies,
+          action.payload
+        ]
+      }
+    }
+    default:
+      return state
   }
 }
 
