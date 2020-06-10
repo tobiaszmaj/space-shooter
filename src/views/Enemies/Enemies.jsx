@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Asteroid from '../../components/Asteroid/Asteroid'
 import random from '../../utility/random'
+import generateID from '../../utility/generateID'
 import * as actionTypes from '../../store/actionTypes'
 import { StateContext } from '../../store/store'
 
@@ -11,7 +12,7 @@ const Enemies = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             const style = random(1, 4)
-            const x = random(0, store.state.game.arenaHeight)
+            const x = random(100, store.state.game.arenaWidth - 70)
             let elementHeight = 0
             let elementWidth = 0
 
@@ -38,6 +39,7 @@ const Enemies = () => {
             }
 
             const payload = {
+                id: generateID(),
                 type: 'asteroid',
                 style: style,
                 x: x,
@@ -56,11 +58,11 @@ const Enemies = () => {
 
     return (
         <React.Fragment>
-            {store.state.enemies.map((enemy, index) => {
+            {store.state.enemies.map((enemy) => {
                 return (
                     <Asteroid
-                        key={index}
-                        index={index}
+                        key={enemy.id}
+                        id={enemy.id}
                         x={enemy.x}
                         y={enemy.y}
                         elementHeight={enemy.height}

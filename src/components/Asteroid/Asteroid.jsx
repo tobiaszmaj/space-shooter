@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useContext } from 'react'
 import anime from 'animejs'
 import styles from './Asteroid.module.css'
 import { StateContext } from '../../store/store'
+import * as actionTypes from '../../store/actionTypes'
 
 const Asteroid = (props) => {
     const element = useRef()
@@ -16,11 +17,16 @@ const Asteroid = (props) => {
                 duration: 5000,
                 easing: 'linear',
                 change() {
-                    console.log('Update asteroid position')
+                    const rect = element.current.getBoundingClientRect()
+                    const payload = {
+                        cords: rect,
+                        id: props.id
+                    }
+                    store.dispatch({ type: actionTypes.ENEMY_CORDS, payload })
                 },
                 complete(anim) {
                     if (anim.completed) {
-                        console.log('Remove asteroid from enemies array')
+                        store.dispatch({ type: actionTypes.ENEMY_REMOVE, id: props.id })
                     }
                 }
             })
