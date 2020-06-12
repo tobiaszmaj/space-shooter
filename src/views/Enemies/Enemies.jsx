@@ -40,17 +40,21 @@ const Enemies = () => {
 
             const payload = {
                 id: generateID(),
+                hp: 1,
+                value: 1,
                 type: 'asteroid',
                 style: style,
                 x: x,
                 y: -elementHeight,
+                hited: false,
+                cords: null,
                 width: elementWidth,
                 height: elementHeight
             }
 
             store.dispatch({ type: actionTypes.ENEMY_ADD, payload })
 
-        }, 2000)
+        }, 1500)
         return () => clearInterval(interval)
     }, [store.state.game.arenaWidth])
 
@@ -60,14 +64,7 @@ const Enemies = () => {
         <React.Fragment>
             {store.state.enemies.map((enemy) => {
                 return (
-                    <Asteroid
-                        key={enemy.id}
-                        id={enemy.id}
-                        x={enemy.x}
-                        y={enemy.y}
-                        elementHeight={enemy.height}
-                        type={enemy.style}
-                    />
+                    <Asteroid key={enemy.id} {...enemy} />
                 )
             })
             }

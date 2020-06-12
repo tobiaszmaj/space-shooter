@@ -11,9 +11,12 @@ export const initialState = {
   },
   game: {
     isStarted: false,
+    gameOver: false,
     arenaHeight: 0,
     arenaWidth: 0,
     playerPosition: {
+      width: 64,
+      height: 64,
       x: 0,
       y: 0
     },
@@ -36,6 +39,15 @@ export const reducer = (state, action) => {
             x: action.payload.playerPosition.x,
             y: action.payload.playerPosition.y
           }
+        }
+      }
+    }
+    case actionTypes.GAME_OVER: {
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          gameOver: true
         }
       }
     }
@@ -150,6 +162,24 @@ export const reducer = (state, action) => {
         enemies: [
           ...updatedArr
         ]
+      }
+    }
+    case actionTypes.PLAYER_ADD_POINTS: {
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          score: state.player.score + action.payload
+        }
+      }
+    }
+    case actionTypes.PLAYER_REMOVE_HP: {
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          lives: state.player.lives - 1
+        }
       }
     }
     default:
