@@ -1,0 +1,16 @@
+{
+  "main.css": "/space-shooter/static/css/main.384e3ced.chunk.css",
+  "main.js": "/space-shooter/static/js/main.2b93aaf9.chunk.js",
+  "main.js.map": "/space-shooter/static/js/main.2b93aaf9.chunk.js.map",
+  "runtime~main.js": "/space-shooter/static/js/runtime~main.91a8dd26.js",
+  "runtime~main.js.map": "/space-shooter/static/js/runtime~main.91a8dd26.js.map",
+  "static/js/2.96eda266.chunk.js": "/space-shooter/static/js/2.96eda266.chunk.js",
+  "static/js/2.96eda266.chunk.js.map": "/space-shooter/static/js/2.96eda266.chunk.js.map",
+  "index.html": "/space-shooter/index.html",
+  "precache-manifest.db4c0c65e16122eabf55ac665753744c.js": "/space-shooter/precache-manifest.db4c0c65e16122eabf55ac665753744c.js",
+  "service-worker.js": "/space-shooter/service-worker.js",
+  "static/css/main.384e3ced.chunk.css.map": "/space-shooter/static/css/main.384e3ced.chunk.css.map",
+  "static/media/Battleship.module.css": "/space-shooter/static/media/battleship_red.ae65df04.png",
+  "static/media/index.css": "/space-shooter/static/media/bg.8d66e0ed.jpg",
+  "static/media/Start.module.css": "/space-shooter/static/media/platform.f2458ac9.png"
+}
