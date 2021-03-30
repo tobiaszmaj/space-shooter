@@ -1,14 +1,18 @@
 # The Space Shooter
 
-### See [DEMO](https://tobiaszmaj.github.io/space-shooter/)
+Classic arcade game to practice React Hooks. 
 
-![Preview](preview.jpg)
+![Design preview](preview.gif)
 
-## What I used?
-* [React](https://reactjs.org/)
-* [anime.js](https://animejs.com/)
-* CSS3
+## Demo
+
+Check out the demo! - [LINK](https://tobiaszmaj.github.io/space-shooter/)
 
 ## Controls
 * Left /Right arrow to move 
 * Left mouse button to shoot
+
+## Technologies
+* [React](https://reactjs.org/)
+* [anime.js](https://animejs.com/)
+* CSS3
